@@ -1,6 +1,6 @@
 import React from 'react';
-import { PawPrint, Droplets, Mountain, Calendar } from 'lucide-react';
-import { Checkbox } from '@/components/UI/CheckBox';
+//import { PawPrint, Droplets, Mountain, Calendar } from 'lucide-react';
+import { Checkbox } from '@mui/material';
 import type { LayerVisibilityMap } from '@/types/map';
 
 
@@ -9,6 +9,7 @@ interface LayerControlsProps {
   onLayerChange: (visibilityMap: LayerVisibilityMap) => void;
 }
 
+/**
 // Map layer types to icons for UI representation
 const layerIcons = {
   species: PawPrint,
@@ -16,6 +17,7 @@ const layerIcons = {
   soil: Mountain,
   events: Calendar,
 };
+ */
 
 /**
  * A control panel component for managing map layer visibility
@@ -57,9 +59,10 @@ export const LayerControls: React.FC<LayerControlsProps> = ({
         {Object.entries(visibilityMap).map(([k, v], idx) => (
           <div key={idx} className="layer-item">
             <Checkbox
-              id={idx}
+              className={`checkbox-input ${!v ? 'checkbox-input--disabled' : ''}`}
               checked={v}
               onChange={() => onLayerChange({...visibilityMap, [k]: !v})}
+              slotProps={{ input: { 'aria-label': k } }}
             />
             <div className="layer-info">
               <div className="layer-name">{k}</div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Header } from '@/components/Layout/Header';
 import { MapContainer } from '@/components/Map/MapContainer';
-import { MapLegend } from '@/components/Map/MapLegend';
+//import { MapLegend } from '@/components/Map/MapLegend';
 import { LayerControls } from '@/components/Map/LayerControls';
 import '@/styles/globals.css';
 import '@/styles/map.css';
