@@ -1,56 +1,115 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { Header } from '@/components/Layout/Header';
 import { MapContainer } from '@/components/Map/MapContainer';
-//import { MapLegend } from '@/components/Map/MapLegend';
 import { LayerControls } from '@/components/Map/LayerControls';
+import { Box } from '@mui/material';
+import { GlobalStyles, useTheme } from '@mui/material';
 import '@/styles/globals.css';
 import '@/styles/map.css';
 import { FixtureReader } from './data/fixture-reader';
 import type { LayerVisibilityMap } from './types/map';
 import type { FeatureCollection } from './types/geometry';
 
+
 /**
- * Main application component that composes the entire UI
- * Manages the map state and renders the map with its controls
+ * Main application component that composes the entire UI.
+ * Manages the map state and renders the map with its controls.
+ * Map uses GeoJSON (docs) => https://geojson.readthedocs.io/en/latest/
  * @component
- * @returns {JSX.Element} The complete application layout with header and map interface
+ * @returns {JSX.Element} The complete application layout with header and map interface.
  */
-function App() {
+function App(): JSX.Element {
+
+  /*
+   * layers: an array of map feature collections (initially empty)
+   * - FeatureCollection items contain geo-spatial types (points, lines, polygons) with coordinates
+   * setLayers: function to update the layers array, based on previous state
+   */
   const [layers, setLayers] = useState<FeatureCollection[]>([])
+
+
+  /*
+   * layerVisibility: an object mapping each layer name to a boolean indicating whether it is visible on the map
+   * - Keys are layer names (strings)
+   * - Values are booleans (true = visible, false = hidden)
+   * setLayerVisibility: function to update the visibility map, based on previous state
+   */
   const [layerVisibility, setLayerVisibility] = useState<LayerVisibilityMap>({})
 
+
+  /* Access the current MUI theme (light/dark mode) */
+  const theme = useTheme();
+
+
+  /* Load map feature collections once on component mount */
   useEffect(() => {
-    FixtureReader.collections()
-      .then(collections => {
-        setLayers([...collections])
+    
+    async function loadCollections() {
+      
+      /* Fetch feature collections and save layers to state */
+      const collections: FeatureCollection[] = await FixtureReader.collections();
+      const allLayers = [... collections];
+      setLayers(allLayers);
 
-        // Take the name property of each collection and set it's initial visibility to true
-        const layerNames = collections.map((fc) => fc.name )
-        const visibilityMap = layerNames.reduce((map, name) => { map[name] = true; return map }, {} as LayerVisibilityMap)
-        setLayerVisibility({...visibilityMap})
-      },)
-  }, [])
+      /* Extract layer names */
+      const layerNames = allLayers.map((layer) => layer.name);
 
-  const layersToRender = layers.filter((fc) => layerVisibility[fc.name])
+      /* Build initial visibility map */
+      const initialVisibility: LayerVisibilityMap = layerNames.reduce(
+        (map, name) => {
+          map[name] = true;
+          return map;
+        },
+        {} as LayerVisibilityMap
+      );
+
+      /* Save visibility map to state */
+      setLayerVisibility(initialVisibility);
+    }
+
+    loadCollections();
+    }, 
+    [] // dependency array
+  )
+
+  /* Logic to only render layers with visibility of `true` */
+  const layersToRender = layers.filter((layer) => layerVisibility[layer.name])
 
   return (
-    <div 
-      className="app-container"
-      style={{
-        background: 'var(--body-bg-default)',
-        transition: 'background 0.3s ease',
-      }}
-    >
-      <Header />
-      <main className="main-content">
-        <MapContainer layers={layersToRender} />
-        {/*<MapLegend />*/}
-        <LayerControls
-          visibilityMap={layerVisibility}
-          onLayerChange={setLayerVisibility}
-        />
-      </main>
-    </div>
+    <>
+      <GlobalStyles
+        styles={{
+          '.app-container': {
+            background: theme.palette.background.paper,
+            boxShadow: 'var(--comp-box-shadow)',
+          },
+        }}
+      />
+
+      <Box 
+        className="app-container ui-components flex-column"
+        sx={{
+          height: '100vh',
+        }}
+      >
+        <Header />
+        <Box
+          component="main" 
+          className="main-content"
+          sx={{
+            flex: 1,
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <MapContainer layers={layersToRender} />
+          <LayerControls
+            visibilityMap={layerVisibility}
+            onLayerChange={setLayerVisibility}
+          />
+        </Box>
+      </Box>
+    </>
   );
 }
 

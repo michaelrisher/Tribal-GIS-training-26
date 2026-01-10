@@ -1,3 +1,42 @@
+/* Component Definitions: Light/Dark */
+:root {
+    --comp-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+    --comp-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Component Definitions: General */
+.ui-components {
+    margin: var(--col-gutter);
+    border-radius: var(--col-1);
+    overflow: hidden;
+    backdrop-filter: blur(var(--col-gutter));
+    transition: var(--app-transition);
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ****************************************
+ * main
+ */
+
+@media (max-width: 768px) {    
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+
 .map-wrapper {
     height: 100%;
     width: 100%;
@@ -430,10 +469,5 @@
         right: auto;
         margin: 10px;
         max-width: none;
-    }
-    
-    .main-content {
-        display: flex;
-        flex-direction: column;
     }
 }
