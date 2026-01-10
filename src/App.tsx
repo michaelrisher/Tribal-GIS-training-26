@@ -34,7 +34,13 @@ function App() {
   const layersToRender = layers.filter((fc) => layerVisibility[fc.name])
 
   return (
-    <div className="app-container">
+    <div 
+      className="app-container"
+      style={{
+        background: 'var(--body-bg-default)',
+        transition: 'background 0.3s ease',
+      }}
+    >
       <Header />
       <main className="main-content">
         <MapContainer layers={layersToRender} />

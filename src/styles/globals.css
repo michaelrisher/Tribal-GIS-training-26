@@ -44,9 +44,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 { font-size: 20px; }
 
-/* Custom variables: colors */
+/* MUI Light Palette */
 :root {
-  /* Light mode colors */
   --body-bg-default: #f9f9f9;
   --color-primary: #667eea;
   --color-secondary: #764ba2;
@@ -56,8 +55,8 @@ h2 { font-size: 20px; }
   --color-text-secondary: #5a6c7d;
 }
 
+/* MUI Dark Palette */
 [data-theme='dark'] {
-  /* Dark mode colors */
   --body-bg-default: #16213e;
   --color-primary: #667eea;
   --color-secondary: #764ba2;
@@ -67,22 +66,15 @@ h2 { font-size: 20px; }
   --color-text-secondary: #94a3b8;
 }
 
+/* Global Properties */
+:root {
+  /* Animations */
+  --app-transition: all 0.3s ease;
+}
+
+
+
 /* App Container */
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    transition: all 0.3s ease;
-}
-
-/* Dark mode body */
-.dark body {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-}
-
 .app-container {
     height: 100vh;
     display: flex;
