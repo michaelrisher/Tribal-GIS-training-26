@@ -1,20 +1,26 @@
-// Given a Feature, it will return a Leaflet Component based on geometry type
-import React from 'react'
+import { type JSX } from 'react'
 import { GeoJSON } from 'react-leaflet'
 import type { FeatureCollection } from '@/types/geometry'
-import type { Feature } from 'geojson'
 
+
+/*
+ * 1 collection = 1 map layer
+ * 1 collection = array of GeoJSON features
+ * 1 feature = may be a point, line, polygon, etc.
+ */
 interface LayerProps {
-  featureCollection: FeatureCollection
+  collection: FeatureCollection
 }
 
-export const Layer: React.FC<LayerProps> = ({ featureCollection }) => {
-  return (
-    featureCollection.features.map((feature, idx) => (
+
+/* Given a collection, returns an array of <GeoJSON> leaflet components for non-null features. */
+export function Layer({ collection }: LayerProps): JSX.Element[] {
+  return collection.features
+    .filter((feature): feature is NonNullable<typeof feature> => Boolean(feature))
+    .map((feature, idx) =>  (
       <GeoJSON
-        key={`${featureCollection.name}-${feature.id || idx}`}
+        key={`${collection.name}-${feature.id || idx}`}
         data={feature}
       />
-    ))
-  )
+  ));
 }

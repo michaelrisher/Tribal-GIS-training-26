@@ -86,7 +86,7 @@ export const MapContainer: React.FC<MapContainerProps> = ({
       />
 
       {layers.map((layer, idx) => (
-        <Layer key={idx} featureCollection={layer} />
+        <Layer key={idx} collection={layer} />
       ))}
       </LeafletMapContainer>
     </div>
