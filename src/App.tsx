@@ -4,8 +4,9 @@ import { MapContainer } from '@/components/Map/MapContainer';
 import { LayerControls } from '@/components/Map/LayerControls';
 import { Box } from '@mui/material';
 import { GlobalStyles, useTheme } from '@mui/material';
-import '@/styles/globals.css';
-import '@/styles/map.css';
+import '@/styles/reset.css';
+import '@/styles/palette-layouts.css';
+import '@/styles/components.css';
 import { FixtureReader } from './data/fixture-reader';
 import type { LayerVisibilityMap } from './types/map';
 import type { FeatureCollection } from './types/geometry';
@@ -79,15 +80,15 @@ function App(): JSX.Element {
     <>
       <GlobalStyles
         styles={{
-          '.app-container': {
+          '.app-wrapper': {
             background: theme.palette.background.paper,
-            boxShadow: 'var(--comp-box-shadow)',
+            boxShadow: 'var(--box-shadow)',
           },
         }}
       />
 
       <Box 
-        className="app-container ui-components flex-column"
+        className="app-wrapper flex-column"
         sx={{
           height: '100vh',
         }}
@@ -95,7 +96,7 @@ function App(): JSX.Element {
         <Header />
         <Box
           component="main" 
-          className="main-content"
+          className="main-wrapper"
           sx={{
             flex: 1,
             position: 'relative',

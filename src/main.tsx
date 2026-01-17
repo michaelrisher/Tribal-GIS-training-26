@@ -2,7 +2,8 @@ import React, { useState, useMemo, createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { createTheme, ThemeProvider, CssBaseline, GlobalStyles } from '@mui/material';
-import '@/styles/globals.css';
+import '@/styles/reset.css';
+import '@/styles/palette-layouts.css';
 
 
 /* Create a context for color mode. */
