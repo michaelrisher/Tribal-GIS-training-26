@@ -146,7 +146,7 @@
 }
 
 .light-dark-controller:hover {
-    background: var(--bg-hover-controller);
+    background: var(--bg-header-controller-hover);
     transform: translateY(-1px);
 }
 

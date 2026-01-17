@@ -19,7 +19,7 @@ export function Layer({ collection }: LayerProps): JSX.Element[] {
     .filter((feature): feature is NonNullable<typeof feature> => Boolean(feature))
     .map((feature, idx) =>  (
       <GeoJSON
-        key={`${collection.name}-${feature.id || idx}`}
+        key={`${collection.name}-${feature.id ?? idx}`} // falls back for null or undefined
         data={feature}
       />
   ));

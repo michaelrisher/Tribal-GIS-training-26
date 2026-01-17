@@ -34,7 +34,7 @@ export function LayerControls({
         zIndex: 'var(--zIndex)',
       }}
     >
-      <h3 className="gen-header controls-header">
+      <h3 id="layer-controls-title" className="gen-header controls-header">
         Map Data Layers
       </h3>
 
