@@ -1,24 +1,24 @@
-import React from 'react';
+import { type JSX } from 'react';
 import { Box, Checkbox } from '@mui/material';
 import type { LayerVisibilityMap } from '@/types/map';
 
 
+/**
+ * Props contract for the LayerControls component.
+ * Defines the visibility state for each map layer and
+ * the callback used to toggle layer visibility.
+ */
 interface LayerControlsProps {
   visibilityMap: LayerVisibilityMap;
   onLayerChange: (visibilityMap: LayerVisibilityMap) => void;
 }
 
 
-/**
- * A control panel component for managing map layer visibility
- * @component
- * @param {LayerControlsProps} props - The component props
- * @returns {JSX.Element} A panel with layer toggle controls
- */
-export const LayerControls: React.FC<LayerControlsProps> = ({
+/* Renders a control panel for toggling map data layers on and off. */
+export function LayerControls({
   visibilityMap,
-  onLayerChange
-}) => {
+  onLayerChange,
+}: LayerControlsProps): JSX.Element {
   return (
     <Box
       component="section"
@@ -39,10 +39,10 @@ export const LayerControls: React.FC<LayerControlsProps> = ({
       </h3>
 
       <ul role="group" aria-label="Map Data Layers">
-        {Object.entries(visibilityMap as Record<string, boolean>).map(([layerName, isVisible]) => (
+        {Object.entries(visibilityMap).map(([layerName, isVisible]) => (
           <Box
             component="li"
-            key={layerName} 
+            key={layerName}
             className="controls-item"
             sx={{
               display: 'flex',
@@ -72,4 +72,4 @@ export const LayerControls: React.FC<LayerControlsProps> = ({
       </ul>
     </Box>
   );
-};
+}
