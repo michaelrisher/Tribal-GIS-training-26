@@ -43,6 +43,7 @@
 
 /* Global Properties */
 :root {
-  /* Animations */
-  --app-transition: all 0.3s ease;
+    --border-radius: var(--row-1);
+    --app-transition: all 0.3s ease;
+    --backdrop-filter: blur(var(--col-gutter));
 }

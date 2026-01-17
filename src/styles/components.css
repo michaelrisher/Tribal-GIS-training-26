@@ -33,17 +33,17 @@
 
 .gen-components {
     border: var(--border);
-    border-radius: var(--row-1);
+    border-radius: var(--border-radius);
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(var(--col-gutter));
+    backdrop-filter: var(--backdrop-filter);
     transition: var(--app-transition);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .gen-components:hover {
     border-color: var(--border-hover);
-    box-shadow: var(--box-shadow-hover);
     transform: var(--translate-y);
+    box-shadow: var(--box-shadow-hover);
 }
 
 .gen-header {
@@ -53,6 +53,18 @@
 
 /* Layouts */
 
+
+.flex-row-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-row-align-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 .flex-column {
     display: flex;
@@ -80,10 +92,44 @@
 
 .app-wrapper {
     margin: var(--col-gutter);
-    border-radius: var(--col-1);
-    overflow: hidden;
-    backdrop-filter: blur(var(--col-gutter));
+    border-radius: var(--border-radius);
+    backdrop-filter: var(--backdrop-filter);
     transition: var(--app-transition);
+    overflow: hidden;
+}
+
+
+/* ****************************************
+ * Header.tsx
+ */
+
+ 
+ .header {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: var(--bg-gradient-start);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+ }
+
+.logo-icon {
+    width: var(--col-2);
+    height: var(--col-2);
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: var(--color-text-primary);
+    transition: var(--app-transition);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.header h2 {
+  color: var(--color-text-primary);
+  transition: color var(--app-transition);
 }
 
 
@@ -93,9 +139,9 @@
 
 
 .map-wrapper {
-    box-shadow: var(--box-shadow);
     border: var(--border-map);
     overflow: hidden;
+    box-shadow: var(--box-shadow);
 }
 
 .leaflet-map-wrapper,
@@ -116,13 +162,14 @@
 .controls-item {
     border: var(--border-controls-item);
     background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-primary);
 }
 
 .controls-item:hover {
-    box-shadow: var(--box-shadow);
     border-color: rgba(102, 126, 234, 0.3);
     background: rgba(255, 255, 255, 0.1);
     transform: translateX(4px);
+    box-shadow: var(--box-shadow);
 }
 
 @media (max-width: 768px) {
@@ -139,68 +186,8 @@
 
 
 
+/****************************** 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/****************************** */
-
-/* Header controls */
 .header-controls {
     display: flex;
     align-items: center;
@@ -208,7 +195,6 @@
     margin-left: auto;
 }
 
-/* Dark mode container */
 .dark-mode-container {
     display: flex;
     align-items: center;
@@ -234,7 +220,6 @@
     white-space: nowrap;
 }
 
-/* Dark mode toggle switch */
 .dark-mode-toggle {
     position: relative;
     width: 70px;
@@ -290,7 +275,6 @@
     color: #fbbf24;
 }
 
-/* Dark mode styles for toggle */
 .dark .dark-mode-container {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -303,8 +287,6 @@
 .dark .dark-mode-label {
     color: #e2e8f0;
 }
-
-/******************************* */
 
 
 .header {
@@ -348,9 +330,6 @@
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
 }
 
-/* ===== DARK MODE STYLES ===== */
-
-/* Dark mode header */
 .dark .header {
     background: rgba(26, 26, 46, 0.95);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -364,6 +343,8 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
+*/
+
 
 
 /* MapContainer.tsx: Old Styling. Refactor for light/dark theme.
