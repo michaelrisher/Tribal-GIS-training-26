@@ -1,12 +1,17 @@
-import { type JSX } from 'react'
+import { type JSX, useContext } from 'react'
 import { Box, Typography, IconButton } from '@mui/material';
 import { Globe, Moon } from 'lucide-react';
+import { ColorModeContext } from '@/main';
 
 
 /* Renders the application header with branding and layout scaffolding.
  * Includes a static light-mode theme toggle UI for styling and future interactivity.
  */
 export function Header(): JSX.Element {
+  const { mode, toggleMode } = useContext(ColorModeContext);
+  const isDarkMode = mode === 'dark';
+
+
   return (
     <Box
       component="header"
@@ -62,14 +67,14 @@ export function Header(): JSX.Element {
 
           <IconButton
             id="theme-toggle"
-            className="toggle-box"
-            aria-label="Theme toggle (disabled)"
+            className={`toggle-box ${isDarkMode ? 'toggle-box--active' : ''}`}
+            onClick={toggleMode}
+            aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
             role="switch"
-            aria-checked={false}
+            aria-checked={isDarkMode}
             disableRipple
             sx={{
               position: 'relative',
-              cursor: 'default',
             }}
           >
             <Box
