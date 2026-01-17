@@ -73,3 +73,35 @@ export function LayerControls({
     </Box>
   );
 }
+
+
+/* Commented out from previous version:
+
+import { PawPrint, Droplets, Mountain, Calendar } from 'lucide-react';
+
+// Map layer types to icons for UI representation
+const layerIcons = {
+  species: PawPrint,
+  water: Droplets,
+  soil: Mountain,
+  events: Calendar,
+};
+
+// Render buttons for switching active layer types (with icons)
+<div className="layer-icons">
+  {Object.entries(layerIcons).map(([type, Icon]) => (
+    <button
+      key={type}
+      className={`layer-icon-button ${
+        activeLayerType === type ? 'active' : ''
+      }`}
+      onClick={() => onLayerTypeChange(type)}
+    >
+      <Icon size={20} />
+      <span className="layer-icon-text">
+        {type.charAt(0).toUpperCase() + type.slice(1)}
+      </span>
+    </button>
+  ))}
+</div>
+*/

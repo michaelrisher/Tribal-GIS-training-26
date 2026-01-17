@@ -104,6 +104,7 @@ function App(): JSX.Element {
           }}
         >
           <MapContainer layers={layersToRender} />
+          {/*<MapLegend />*/}
           <LayerControls
             visibilityMap={layerVisibility}
             onLayerChange={setLayerVisibility}
