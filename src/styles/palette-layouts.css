@@ -1,0 +1,51 @@
+/* MUI Light Palette */
+:root {
+  --body-bg-default: #f9f9f9;
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-bg-default: #f9f9f9;
+  --color-bg-paper: transparent;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #5a6c7d;
+}
+
+
+/* MUI Dark Palette */
+[data-theme='dark'] {
+  --body-bg-default: #16213e;
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-bg-default: #1a1a2e;
+  --color-bg-paper: rgba(0, 0, 0, 0.2);
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+}
+
+
+/* Grid System */
+:root {
+    --row-gutter: 8px;
+    --row-1: 16px;
+    --row-2: 32px;
+
+    --col-gutter: 10px;
+    --col-1: 20px;
+    --col-2: 40px;
+    --col-3: 60px;
+    --col-4: 80px;
+}
+
+
+/* Component System */
+:root {
+    --width-controls: 240px;
+    --zIndex: 1000;
+}
+
+
+/* Global Properties */
+:root {
+    --border-radius: var(--row-1);
+    --app-transition: all 0.3s ease;
+    --backdrop-filter: blur(var(--col-gutter));
+}

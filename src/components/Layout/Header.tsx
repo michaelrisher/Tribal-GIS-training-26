@@ -1,63 +1,100 @@
-import React, { useState, useEffect } from 'react';
-import { Globe, Moon, Sun } from 'lucide-react';
+import { type JSX, useContext } from 'react'
+import { Box, Typography, IconButton } from '@mui/material';
+import { Globe, Moon } from 'lucide-react';
+import { ColorModeContext } from '@/main';
 
-/**
- * Header component with the application logo, title, and dark mode toggle
- * @component
- * @returns {JSX.Element} The application header with ProgramEarth branding and dark mode toggle
+
+/* Renders the application header with branding and layout scaffolding.
+ * Includes a static light-mode theme toggle UI for styling and future interactivity.
  */
-export const Header: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+export function Header(): JSX.Element {
+  const { mode, toggleMode } = useContext(ColorModeContext);
+  const isDarkMode = mode === 'dark';
 
-  // Load dark mode preference from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme === 'true') {
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
-
-  // Toggle dark mode and save preference
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode.toString());
-    
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
 
   return (
-    <header className="header">
-      <div className="header-logo">
-        <div className="logo-icon">
-          <Globe size={18} />
-        </div>
-        <span>ProgramEarth</span>
-      </div>
-      
-      <div className="header-controls">
-        <div className="dark-mode-container">
-          <span className="dark-mode-label">
-            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-          </span>
-          <button
-            className={`dark-mode-toggle ${isDarkMode ? 'dark-mode-toggle--active' : ''}`}
-            onClick={toggleDarkMode}
+    <Box
+      component="header"
+      className="header flex-row-align-center"
+      role="banner"
+      sx={{
+        justifyContent: 'space-between',
+        gap: 'var(--row-1)',
+        padding: 'var(--col-1) var(--col-1)',
+      }}
+    >
+      <Box
+        component="a"
+        href="/"
+        className="header-logo flex-row-align-center"
+        aria-label="ProgramEarth"
+        sx={{
+          gap: 'var(--col-gutter)',
+        }}
+      >
+        <Box
+          className="logo-icon flex-row-align-center"
+          sx={{
+            justifyContent: 'center',
+          }}
+        >
+          <Globe size={18} aria-hidden="true" />
+        </Box>
+        <h2 aria-hidden="true">ProgramEarth</h2>
+      </Box>
+
+      {/* Light / Dark Mode UI (static, light mode default) */}
+      <Box
+        className="light-dark-container"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'var(--row-1)',
+          ml: 'auto',
+        }}
+      >
+        <Box
+          className="light-dark-controller"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'var(--row-gutter)',
+          }}
+        >
+          <Typography component="span" className="mode-label">
+            Dark Mode
+          </Typography>
+
+          <IconButton
+            id="theme-toggle"
+            className={`toggle-box ${isDarkMode ? 'toggle-box--active' : ''}`}
+            onClick={toggleMode}
             aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+            role="switch"
+            aria-checked={isDarkMode}
+            disableRipple
+            sx={{
+              position: 'relative',
+            }}
           >
-            <div className="dark-mode-toggle__slider">
-              <div className="dark-mode-toggle__icon">
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </div>
-            </div>
-          </button>
-        </div>
-      </div>
-    </header>
+            <Box
+              className="toggle__slider"
+              sx={{
+                top: '2px',
+                left: '2px',
+                position: 'absolute',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Box className="toggle__icon">
+                <Moon size={18} />
+              </Box>
+            </Box>
+          </IconButton>
+        </Box>
+      </Box>
+    </Box>
   );
-};
+}
