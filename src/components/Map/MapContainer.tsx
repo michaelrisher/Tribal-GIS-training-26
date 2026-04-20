@@ -35,8 +35,8 @@ export function MapContainer({
       }}
     >
       <LeafletMapContainer
-        center={[-3.1319, -60.0261]}
-        zoom={11}
+        center={[42.0013, -111.0469]}
+        zoom={6}
         style={{ 
           height: '100%', 
           width: '100%',

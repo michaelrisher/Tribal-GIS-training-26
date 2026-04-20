@@ -1,0 +1,119 @@
+{
+  "type": "FeatureCollection",
+  "name": "Land Project Sites",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.3546373, 47.5609785]
+      },
+      "properties": {
+        "tribes": ["Duwamish", "Snohomish"],
+        "identifier": "Duwamish Longhouse",
+        "watershedRegion": "17 Pacific Northwest",
+        "acreage": 11,
+        "restorationServices": ["Agroforestry", "BioChar Application", "Reforestation"]
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-121.4825272, 36.7127724]
+      },
+      "properties": {
+        "tribes": ["Ramaytush", "Ohlone"],
+        "identifier": "Pescadero Creek",
+        "watershedRegion": "18 California",
+        "acreage": 100,
+        "restorationServices": ["Meadow Rewilding", "BioChar Application", "Stream Restoration"]
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-113.6140818, 34.698916]
+      },
+      "properties": {
+        "tribes": ["Hualapai"],
+        "identifier": "Ha'Kamwe'",
+        "watershedRegion": "15 Lower Colorado",
+        "acreage": 360,
+        "restorationServices": []
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-120.459190, 37.665729]
+      },
+      "properties": {
+        "tribes": ["Karuk", "Yosemite Rivers Alliance"],
+        "identifier": "Tuolomne River",
+        "watershedRegion": "18 California",
+        "acreage": 23915,
+        "restorationServices": ["Tule Restoration", "Wetland Regeneration"]
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.9048793, 38.1236419]
+      },
+      "properties": {
+        "tribes": ["Coastal Miwok"],
+        "identifier": "Tomales Bay",
+        "watershedRegion": "18 California",
+        "acreage": 71000,
+        "restorationServices": []
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-109.7174679, 37.1973456]
+      },
+      "properties": {
+        "tribes": ["Ute Mountain Ute"],
+        "identifier": "Tez Naz Iah",
+        "watershedRegion": "14 Upper Colorado",
+        "acreage": 597000,
+        "restorationServices": []
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.624954, 34.283149]
+      },
+      "properties": {
+        "tribes": ["Chickasaw", "Choctaw"],
+        "identifier": "Kiamichi River",
+        "watershedRegion": "11 Arkansas-White-Red",
+        "acreage": 1163670,
+        "restorationServices": []
+      }
+    },
+    { 
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-109.9049502, 37.2181153]
+      },
+      "properties": {
+        "tribes": ["Chickasaw", "Choctaw"],
+        "identifier": "Bears Ears National Monument",
+        "watershedRegion": "14 Upper Colorado",
+        "acreage": 1360000,
+        "restorationServices": ["Agroforestry", "BioChar Application", "Invasive Plants Removal"]
+      }
+    }
+  ]
+}
