@@ -1,5 +1,5 @@
 # Step 1: Base Image
-FROM node:20-alpine
+FROM node:24-alpine
 
 # Step 2: Set Working Directory & Tooling
 # Allow the workdir to be overridden at build time, default is /app
@@ -14,8 +14,7 @@ COPY package.json pnpm-lock.yaml ${WORKDIR}/
 
 # Step 4: Install Dependencies
 RUN corepack enable \
-    && corepack prepare pnpm@* --activate \
-    && pnpm install --frozen-lockfile
+    && pnpm install
 
 # Step 5: Copy Source Code
 COPY . ${WORKDIR}/
