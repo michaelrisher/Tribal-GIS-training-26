@@ -1,14 +1,68 @@
-import React from 'react';
-import {
-  MapContainer as LeafletMapContainer,
-  TileLayer,
-} from 'react-leaflet';
-import { Layer } from './Layer'
-import { Icon } from 'leaflet';
+import { Box } from '@mui/material';
+import { MapContainer as LeafletMapContainer, TileLayer } from 'react-leaflet';
+import { Layer } from './Layer';
 import 'leaflet/dist/leaflet.css';
 import type { FeatureCollection } from '@/types/geometry';
 
-/*
+
+/**
+ * Props for the MapContainer component.
+ * Each entry in `layers` represents a GeoJSON FeatureCollection
+ * rendered as an independent map layer.
+ */
+interface MapContainerProps {
+  layers: FeatureCollection[];
+}
+
+
+/**
+ * Renders the main interactive map using react-leaflet and displays
+ * one or more GeoJSON feature collections as independent layers.
+ */
+export function MapContainer({
+  layers,
+}: MapContainerProps) {
+  return (
+    <Box
+      className="map-wrapper"
+      component="section"
+      aria-label="Interactive map of geographical data"
+      role="region"
+      tabIndex={0}
+      sx={{
+        height: '100%',
+        width: '100%',
+      }}
+    >
+      <LeafletMapContainer
+        center={[42.0013, -111.0469]}
+        zoom={6}
+        style={{ 
+          height: '100%', 
+          width: '100%',
+         }}
+        className="leaflet-map-wrapper"
+        attributionControl={false}
+      >
+        {/* OpenStreetMap base layer */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {layers.map((layer, idx) => (
+          <Layer key={idx} collection={layer} />
+        ))}
+      </LeafletMapContainer>
+    </Box>
+  );
+}
+
+
+/* Commented out from previous version:
+
+import { Icon } from 'leaflet';
+
 // Fix for default markers in react-leaflet
 delete (Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
 Icon.Default.mergeOptions({
@@ -19,24 +73,11 @@ Icon.Default.mergeOptions({
   shadowUrl:
     'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
-*/
 
-/**
- * Props for the MapContainer component
- * @interface MapContainerProps
- * @property {MapPoint[]} points - Array of map points to display (landmarks, animals, etc.)
- * @property {MapArea[]} areas - Array of map areas to display (zones, water bodies, etc.)
- */
-interface MapContainerProps {
-  layers: FeatureCollection[]
-}
 
-/**
- * Creates a custom map marker icon based on the point type
- * @param {string} type - The type of point ('landmark', 'animal', 'insect', 'plant')
- * @returns {Icon} A Leaflet Icon instance with custom styling
- */
-/*
+// Creates a custom map marker icon based on the point type.
+// @param {string} type - The type of point ('landmark', 'animal', 'insect', 'plant')
+// @returns {Icon} A Leaflet Icon instance with custom styling
 const createCustomIcon = (type: string): Icon => {
   const colors: Record<string, string> = {
     landmark: '#e74c3c',
@@ -60,35 +101,3 @@ const createCustomIcon = (type: string): Icon => {
   });
 };
 */
-
-/**
- * The main map component that displays geographical data using react-leaflet
- * @component
- * @param {MapContainerProps} props - The properties that define the map's data
- * @returns {JSX.Element} A Leaflet map with markers and polygons
- */
-export const MapContainer: React.FC<MapContainerProps> = ({
-  layers
-}) => {
-  return (
-    <div className="map-wrapper">
-      <LeafletMapContainer
-        center={[-3.1319, -60.0261]}
-        zoom={11}
-        style={{ height: '100%', width: '100%' }}
-        className="map-container"
-        attributionControl={false}
-      >
-      {/* OpenStreetMap base layer */}
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      {layers.map((layer, idx) => (
-        <Layer key={idx} featureCollection={layer} />
-      ))}
-      </LeafletMapContainer>
-    </div>
-  );
-};
