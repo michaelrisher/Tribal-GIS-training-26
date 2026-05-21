@@ -5,6 +5,10 @@ https://docs.google.com/document/d/1uySfcBR4kpaGsBKqwIfW-pXMD0Z_ijirnyZrFJpIXjQ/
 ## project board
 https://github.com/orgs/OpenSourceFellows/projects/21/views/11
 
+## project page
+
+https://github.com/orgs/OpenSourceFellows/projects/21/views/11
+
 ## demo
 
 map demo that it makes 
